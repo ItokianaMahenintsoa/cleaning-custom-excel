@@ -1,0 +1,57 @@
+{
+  "___remove_empty_headers___": { "enabled": true },
+  "Matric": {
+    "strip_whitespace": true,
+    "to_upper": true,
+    "remove_spaces": true
+  },
+  "Sexe": {
+    "strip_whitespace": true,
+    "to_upper": true,
+    "mapping": {
+      "MASCULIN": "M",
+      "MASCULINE": "M",
+      "HOMME": "M",
+      "H": "M",
+      "FEMININ": "F",
+      "FEMININE": "F",
+      "FEMME": "F",
+      "F": "F"
+    }
+  },
+  "Situation M": {
+    "strip_whitespace": true,
+    "to_upper": true,
+    "mapping": {
+      "CELIBATAIRE": "C",
+      "MARIE": "M"
+    }
+  },
+  "Fonction": {
+    "standardize_auto": true
+  },
+  "Departement": {
+    "standardize_auto": true
+  },
+  "Equipe": {
+    "standardize_auto": true
+  },
+  "Shift": {
+    "strip_whitespace": true,
+    "to_upper": true,
+    "mapping": {
+      "JOUR": "JOUR",
+      "NUIT": "NUIT"
+    }
+  },
+  "Site" : {
+    "strip_whitespace": true,
+    "to_upper": true,
+    "mapping": {
+      "IVOHASINA": "IVOHASINA",
+      "MAHATSANGY": "MAHATSANGY",
+      "FIVOARANA": "FIVOARANA",
+      "SOAZARAINA": "SOAZARAINA"
+    }
+  }
+}

@@ -90,7 +90,7 @@ async def clean_excel(
 
         df_cleaned = apply_cleaning_values(df, rules)
 
-        preview = df_cleaned.head(10).replace([np.nan, np.inf, -np.inf], None).to_dict(orient='records')
+        preview = df_cleaned.head(60).replace([np.nan, np.inf, -np.inf], None).to_dict(orient='records')
         preview = jsonable_encoder(preview)
 
         return JSONResponse(content={
