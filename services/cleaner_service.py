@@ -128,8 +128,6 @@ def apply_cleaning_values(df: pd.DataFrame, rules: Dict[str, Dict[str, Any]]) ->
                     return None            
 
             df[col] = df[col].apply(format_malagasy_phone)
-
         
-
     return df
 

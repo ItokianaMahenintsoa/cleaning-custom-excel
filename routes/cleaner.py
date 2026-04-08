@@ -1,11 +1,14 @@
 from fastapi import APIRouter, HTTPException, File, UploadFile, Form
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.encoders import jsonable_encoder
 from io import BytesIO
 import pandas as pd
 import numpy as np
 import json
 from services.cleaner_service import apply_cleaning_values 
+import io
+
+
 cleaner_router = APIRouter(
     tags=["Cleaner"]
 )
@@ -90,16 +93,32 @@ async def clean_excel(
 
         df_cleaned = apply_cleaning_values(df, rules)
 
-        preview = df_cleaned.head(60).replace([np.nan, np.inf, -np.inf], None).to_dict(orient='records')
-        preview = jsonable_encoder(preview)
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+            df_cleaned.to_excel(writer, index=False, sheet_name='Donnees_Netoyees')
 
-        return JSONResponse(content={
-            "filename": file.filename,
-            "original_columns": len(df.columns),
-            "cleaned_columns": len(df_cleaned.columns),
-            "cleaned_data": preview,
-            "message": "Nettoyage terminé avec succès"
-        })
+        output.seek(0)
+        original_name = file.filename.rsplit('.', 1)[0]  
+        output_filename = f"{original_name}_NETTOYE.xlsx"
+
+        return StreamingResponse(
+            output,
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            headers={
+                "Content-Disposition": f'attachment; filename="{output_filename}"'
+            }
+        )
+
+        # preview = df_cleaned.head(60).replace([np.nan, np.inf, -np.inf], None).to_dict(orient='records')
+        # preview = jsonable_encoder(preview)
+
+        # return JSONResponse(content={
+        #     "filename": file.filename,
+        #     "original_columns": len(df.columns),
+        #     "cleaned_columns": len(df_cleaned.columns),
+        #     "cleaned_data": preview,
+        #     "message": "Nettoyage terminé avec succès"
+        # })
 
     except Exception as e:
         print("[DEBUG] Global error:", str(e))
