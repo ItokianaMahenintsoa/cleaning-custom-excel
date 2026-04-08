@@ -44,7 +44,7 @@
       "NUIT": "NUIT"
     }
   },
-  "Site" : {
+  "Site": {
     "strip_whitespace": true,
     "to_upper": true,
     "mapping": {
@@ -53,5 +53,57 @@
       "FIVOARANA": "FIVOARANA",
       "SOAZARAINA": "SOAZARAINA"
     }
+  },
+  "Date d'embauche": {
+    "to_date": true,
+    "date_format": "%Y-%m-%d"
+  },
+  "Date CIN": {
+    "to_date": true,
+    "date_format": "%Y-%m-%d"
+  },
+  "BirthDate": {
+    "to_date": true,
+    "date_format": "%Y-%m-%d"
+  },
+  "Type d'heure": {
+    "c": true,
+    "type_heure": true
+  },
+  "CNaPS": {
+    "numeric_only": true,
+    "strip_whitespace": true
+  },
+  "CIN": {
+    "numeric_only": true,
+    "strip_whitespace": true
+  },
+  "CIN PLACE": {
+    "strip_whitespace": true
+  },
+  "BirthPlace": {
+    "strip_whitespace": true
+  },
+  "Address1": {
+    "strip_whitespace": true
+  },
+  "Address2": {
+    "strip_whitespace": true
+  },
+  "Email": {
+    "validate_email": true,
+    "strip_whitespace": true,
+    "remove_spaces": true
+  },
+  "ICE_Tel": {
+    "format_phone_mg": true
+  },
+  "Empl_Tel": {
+    "format_phone_mg": true
+  },
+  "initial_balance": {
+    "numeric_only": true,
+    "strip_whitespace": true
   }
+ 
 }
